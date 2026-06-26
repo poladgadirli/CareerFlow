@@ -3,6 +3,7 @@ package com.careerflow.auth;
 import com.careerflow.auth.dto.AuthResponse;
 import com.careerflow.auth.dto.LoginRequest;
 import com.careerflow.auth.dto.RegisterRequest;
+import com.careerflow.security.JwtService;
 import com.careerflow.user.Role;
 import com.careerflow.user.User;
 import com.careerflow.user.UserRepository;
@@ -16,6 +17,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
@@ -34,7 +36,9 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return new AuthResponse(null, "Bearer");
+        String accessToken = jwtService.generateToken(user);
+
+        return new AuthResponse(accessToken, "Bearer");
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -47,10 +51,8 @@ public class AuthService {
                 user.getPassword()
         );
 
-        if (!passwordMatches) {
-            throw new RuntimeException("Invalid username/email or password");
-        }
+        String accessToken = jwtService.generateToken(user);
 
-        return new AuthResponse(null, "Bearer");
+        return new AuthResponse(accessToken, "Bearer");
     }
 }
