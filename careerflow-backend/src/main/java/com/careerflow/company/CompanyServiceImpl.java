@@ -23,7 +23,7 @@ public class CompanyServiceImpl implements CompanyService {
     public List<CompanyResponse> getAllByCurrentUser() {
         User currentUser = getCurrentUser();
 
-        return companyRepository.findByUser(currentUser)
+        return companyRepository.findAllByUser(currentUser)
                 .stream()
                 .map(companyMapper::toResponse)
                 .toList();
