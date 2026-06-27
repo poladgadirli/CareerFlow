@@ -3,7 +3,7 @@ package com.careerflow.company.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record CreateCompanyRequest(
+public record UpdateCompanyRequest(
 
         @NotBlank(message = "Company name is required")
         @Size(max = 50, message = "Company name must be at most 50 characters")

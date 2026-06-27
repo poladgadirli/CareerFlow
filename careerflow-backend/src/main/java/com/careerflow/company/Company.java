@@ -17,7 +17,7 @@ import lombok.Setter;
 @Table(name = "companies")
 public class Company extends BaseEntity {
 
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 50)
     private String name;
 
     @Column(length = 500)
