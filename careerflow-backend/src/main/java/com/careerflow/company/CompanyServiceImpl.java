@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public CompanyResponse getById(Long id) {
+    public CompanyResponse getById(UUID id) {
         User currentUser = getCurrentUser();
 
         Company company = companyRepository.findById(id)
@@ -57,7 +58,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public CompanyResponse update(Long id, UpdateCompanyRequest request) {
+    public CompanyResponse update(UUID id, UpdateCompanyRequest request) {
         User currentUser = getCurrentUser();
 
         Company company = companyRepository.findById(id)
@@ -72,7 +73,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         User currentUser = getCurrentUser();
 
         Company company = companyRepository.findById(id)
