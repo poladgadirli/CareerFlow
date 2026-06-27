@@ -1,4 +1,4 @@
-package com.careerflow.entity;
+package com.careerflow.company;
 
 import com.careerflow.common.entity.BaseEntity;
 import com.careerflow.user.User;

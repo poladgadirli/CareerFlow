@@ -1,0 +1,13 @@
+package com.careerflow.company;
+
+import com.careerflow.user.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface CompanyRepository extends JpaRepository<Company, Long> {
+
+    List<Company> findByUser(User user);
+
+    boolean existsByNameAndUser(String name, User user);
+}
