@@ -1,6 +1,6 @@
 package com.careerflow.company;
 
-import com.careerflow.common.entity.BaseEntity;
+import com.careerflow.common.BaseEntity;
 import com.careerflow.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
