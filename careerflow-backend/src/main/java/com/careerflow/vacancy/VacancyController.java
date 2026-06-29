@@ -6,7 +6,6 @@ import com.careerflow.vacancy.dto.UpdateVacancyRequest;
 import com.careerflow.vacancy.dto.VacancyResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +19,6 @@ public class VacancyController {
     private final VacancyService vacancyService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public BaseResponse<VacancyResponse> create(@Valid @RequestBody CreateVacancyRequest request) {
         VacancyResponse response = vacancyService.create(request);
 
@@ -59,8 +57,9 @@ public class VacancyController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable UUID id) {
+    public BaseResponse<Void> delete(@PathVariable UUID id) {
         vacancyService.delete(id);
+
+        return BaseResponse.success("Vacancy deleted successfully", null);
     }
 }
