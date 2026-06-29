@@ -6,6 +6,7 @@ import com.careerflow.vacancy.enums.WorkType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public record VacancyResponse(
         Long id,
@@ -18,7 +19,7 @@ public record VacancyResponse(
         WorkType workType,
         EmploymentType employmentType,
         VacancyStatus status,
-        Long companyId,
+        UUID companyId,
         String companyName,
         LocalDateTime createdAt,
         LocalDateTime updatedAt
