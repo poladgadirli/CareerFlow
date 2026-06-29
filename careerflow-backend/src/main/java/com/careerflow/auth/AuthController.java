@@ -3,6 +3,7 @@ package com.careerflow.auth;
 import com.careerflow.auth.dto.AuthResponse;
 import com.careerflow.auth.dto.LoginRequest;
 import com.careerflow.auth.dto.RegisterRequest;
+import com.careerflow.common.BaseResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,12 +18,18 @@ public class AuthController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public AuthResponse register(@Valid @RequestBody RegisterRequest request) {
-        return authService.register(request);
+    public BaseResponse<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+        return BaseResponse.success(
+                "Registration successful",
+                authService.register(request)
+        );
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@Valid @RequestBody LoginRequest request) {
-        return authService.login(request);
+    public BaseResponse<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
+        return BaseResponse.success(
+                "Login successful",
+                authService.login(request)
+        );
     }
 }
