@@ -64,6 +64,10 @@ public class CompanyServiceImpl implements CompanyService {
                 .filter(c -> c.getUser().getId().equals(currentUser.getId()))
                 .orElseThrow(() -> new RuntimeException("Company not found"));
 
+        if (companyRepository.existsByNameAndUserAndIdNot(request.name(), currentUser, id)) {
+            throw new RuntimeException("Company already exists");
+        }
+
         companyMapper.updateEntity(company, request);
 
         Company updatedCompany = companyRepository.save(company);

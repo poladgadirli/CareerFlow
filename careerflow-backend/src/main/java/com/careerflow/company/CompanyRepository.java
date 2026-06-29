@@ -11,4 +11,6 @@ public interface CompanyRepository extends JpaRepository<Company, UUID> {
     List<Company> findAllByUser(User user);
 
     boolean existsByNameAndUser(String name, User user);
+
+    boolean existsByNameAndUserAndIdNot(String name, User user, UUID id);
 }
