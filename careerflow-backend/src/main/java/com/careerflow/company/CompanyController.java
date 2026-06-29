@@ -1,5 +1,6 @@
 package com.careerflow.company;
 
+import com.careerflow.common.BaseResponse;
 import com.careerflow.company.dto.CompanyResponse;
 import com.careerflow.company.dto.CreateCompanyRequest;
 import com.careerflow.company.dto.UpdateCompanyRequest;
@@ -18,30 +19,47 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @GetMapping
-    public List<CompanyResponse> getAllByCurrentUser() {
-        return companyService.getAllByCurrentUser();
+    public BaseResponse<List<CompanyResponse>> getAllByCurrentUser() {
+        return BaseResponse.success(
+                "Companies retrieved successfully",
+                companyService.getAllByCurrentUser()
+        );
     }
 
     @GetMapping("/{id}")
-    public CompanyResponse getById(@PathVariable UUID id) {
-        return companyService.getById(id);
+    public BaseResponse<CompanyResponse> getById(@PathVariable UUID id) {
+        return BaseResponse.success(
+                "Company retrieved successfully",
+                companyService.getById(id)
+        );
     }
 
     @PostMapping
-    public CompanyResponse create(@Valid @RequestBody CreateCompanyRequest request) {
-        return companyService.create(request);
+    public BaseResponse<CompanyResponse> create(@Valid @RequestBody CreateCompanyRequest request) {
+        return BaseResponse.success(
+                "Company created successfully",
+                companyService.create(request)
+        );
     }
 
     @PutMapping("/{id}")
-    public CompanyResponse update(
+    public BaseResponse<CompanyResponse> update(
             @PathVariable UUID id,
             @Valid @RequestBody UpdateCompanyRequest request
     ) {
-        return companyService.update(id, request);
+        return BaseResponse.success(
+                "Company updated successfully",
+                companyService.update(id, request)
+        );
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public BaseResponse<Void> delete(@PathVariable UUID id) {
         companyService.delete(id);
+
+        return BaseResponse.success(
+                "Company deleted successfully",
+                null
+        );
     }
 }
