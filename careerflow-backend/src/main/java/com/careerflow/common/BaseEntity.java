@@ -1,4 +1,4 @@
-package com.careerflow.common.entity;
+package com.careerflow.common;
 
 import jakarta.persistence.*;
 import lombok.Getter;
