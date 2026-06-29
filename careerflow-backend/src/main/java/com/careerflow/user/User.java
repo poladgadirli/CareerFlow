@@ -1,6 +1,6 @@
 package com.careerflow.user;
 
-import com.careerflow.common.entity.BaseEntity;
+import com.careerflow.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
